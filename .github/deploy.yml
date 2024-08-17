@@ -2,7 +2,7 @@ name: Deploy repository to Github Pages
 
 on:
   push:
-    branches: [ master, stable ]
+    branches: [ main, stable ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -20,23 +20,23 @@ jobs:
     - name: Checkout main
       uses: actions/checkout@v2
       with:
-        path: master
-        ref: master
+        path: main
+        ref: main
         fetch-depth: '0'
     - run: |
         cd master
         ./build_site.sh ../_site/develop
     # uncomment this once we have a stable branch
-    - name: Checkout Stable
-      uses: actions/checkout@v2
-      with:
-        path: stable
-        ref: stable
-        fetch-depth: '0'
-    - run: |
-        cd stable
-        ../master/build_site.sh ../_site/stable
-    - uses: actions/upload-pages-artifact@v2
+    #- name: Checkout Stable
+    # uses: actions/checkout@v2
+    #  with:
+    #    path: stable
+    #    ref: stable
+    #    fetch-depth: '0'
+    #- run: |
+    #    cd stable
+    #    ../master/build_site.sh ../_site/stable
+    #- uses: actions/upload-pages-artifact@v2
     
   deploy:
     environment:

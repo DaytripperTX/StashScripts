@@ -1,1 +1,53 @@
-
+name: PornMonde
+performerByURL:
+  - action: scrapeXPath
+    url: 
+      - pornhub.com
+    scraper: performerScraper
+sceneByURL:
+  - action: scrapeXPath
+    url: 
+      - pornhub.com/view_video.php
+    scraper: sceneScraper
+xPathScrapers:
+  performerScraper:
+    common:
+      $infoPiece: //div[@class="infoPiece"]/span
+    performer:
+      Name: //h1[@itemprop="name"]
+      Birthdate: 
+        selector: //span[@itemprop="birthDate"]
+        parseDate: Jan 2, 2006
+      Twitter: //span[text() = 'Twitter']/../@href
+      Instagram: //span[text() = 'Instagram']/../@href
+      Measurements: $infoPiece[text() = 'Measurements:']/../span[@class="smallInfo"]
+      Height: 
+        selector: $infoPiece[text() = 'Height:']/../span[@class="smallInfo"]
+        postProcess:
+          - replace: 
+              - regex: .*\((\d+) cm\)
+                with: $1
+      Ethnicity: $infoPiece[text() = 'Ethnicity:']/../span[@class="smallInfo"]
+      FakeTits: $infoPiece[text() = 'Fake Boobs:']/../span[@class="smallInfo"]
+      Piercings: $infoPiece[text() = 'Piercings:']/../span[@class="smallInfo"]
+      Tattoos: $infoPiece[text() = 'Tattoos:']/../span[@class="smallInfo"]
+      CareerLength: 
+        selector: $infoPiece[text() = 'Career Start and End:']/../span[@class="smallInfo"]
+        postProcess:
+          - replace:
+            - regex: \s+to\s+
+              with: "-"
+  sceneScraper:
+    common:
+      $performer: //div[@class="pornstarsWrapper"]/a[@data-mxptype="Pornstar"]
+      $studio: //div[@data-type="channel"]/a
+    scene:
+      Title: //div[@id="main-container"]/@data-video-title
+      Tags: 
+        Name: //div[@class="categoriesWrapper"]//a[not(@class="add-btn-small ")]
+      Performers:
+        Name: $performer/@data-mxptext
+        URL: $performer/@href
+      Studio:
+        Name: $studio
+        URL: $studio/@href    

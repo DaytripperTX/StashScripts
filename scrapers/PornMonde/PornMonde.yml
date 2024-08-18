@@ -46,6 +46,9 @@ xPathScrapers:
         Name: $performer/li/a/*[@class='Popover']/text()
         URL: $performer//li/a/@href
       Image: //meta[@property="og:image"]/@content
-      Date: //*[@class='Date']/*[@class='Value']/text()
+      Date: 
+        Selector: //*[@class='Date']/*[@class='Value']/text()
+        postProcess:
+          - parseDate: "02.01.2006"
       Tags:
         Name: //*[@class='VideoCategories']/ul/li/a/*[@class='Popover']/text()

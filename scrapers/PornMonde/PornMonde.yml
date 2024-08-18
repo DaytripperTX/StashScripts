@@ -9,6 +9,7 @@ sceneByURL:
     url: 
       - pornmonde.com/video
     scraper: sceneScraper
+
 sceneByName:
   action: scrapeXPath
   queryURL: https://pornmonde.com/search?q={}
@@ -18,7 +19,7 @@ sceneByFragment:
   queryURL: https://pornmonde.com/search?q={filename}
   queryURLReplace:
     filename:
-      - regex: (.*[^a-zA-Z])(?:PornMonde(?:.+))
+      - regex: (.*[^a-zA-Z])(?:- PornMonde(?:.+))
         with: $1
   scraper: sceneScraper
 sceneByQueryFragment:
@@ -26,7 +27,7 @@ sceneByQueryFragment:
   queryURL: https://pornmonde.com/search?q={filename}
   queryURLReplace:
     filename:
-      - regex: (.*[^a-zA-Z])(?:PornMonde(?:.+))
+      - regex: (.*[^a-zA-Z])(?:- PornMonde(?:.+))
         with: $1
   scraper: sceneScraper
 

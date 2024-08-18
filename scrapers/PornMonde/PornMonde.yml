@@ -9,6 +9,19 @@ sceneByURL:
     url: 
       - pornmonde.com/video
     scraper: sceneScraper
+sceneByName:
+  action: scrapeXPath
+  queryURL: https://pornmonde.com/search?q={}
+  scraper: sceneSearch
+sceneByFragment:
+  action: scrapeXPath
+  queryURL: https://pornmonde.com/search?q={filename}
+  queryURLReplace:
+    filename:
+      - regex: (.*[^a-zA-Z])(?:PornMonde(?:.+))
+        with: $1
+  scraper: sceneScraper
+  
 xPathScrapers:
   performerScraper:
     common:
@@ -37,6 +50,7 @@ xPathScrapers:
           - replace:
             - regex: \s+to\s+
               with: "-"
+              
   sceneScraper:
     common:
       $performer: //*[@class='VideoPornstars']/*[@class='CircleImageList']

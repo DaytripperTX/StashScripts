@@ -3,12 +3,12 @@ description: A scraper for PornMonde.com
 performerByURL:
   - action: scrapeXPath
     url: 
-      - pornhub.com
+      - https://pornmonde.com/
     scraper: performerScraper
 sceneByURL:
   - action: scrapeXPath
     url: 
-      - pornhub.com/view_video.php
+      - pornmonde.com/video
     scraper: sceneScraper
 xPathScrapers:
   performerScraper:
@@ -40,15 +40,9 @@ xPathScrapers:
               with: "-"
   sceneScraper:
     common:
-      $performer: //div[@class="pornstarsWrapper"]/a[@data-mxptype="Pornstar"]
-      $studio: //div[@data-type="channel"]/a
+      $performer: //*[@class='VideoPornstars']/*[@class='CircleImageList']
     scene:
-      Title: //div[@id="main-container"]/@data-video-title
-      Tags: 
-        Name: //div[@class="categoriesWrapper"]//a[not(@class="add-btn-small ")]
+      Title: //*[@class='VideoTitle']/text()
       Performers:
-        Name: $performer/@data-mxptext
-        URL: $performer/@href
-      Studio:
-        Name: $studio
-        URL: $studio/@href    
+        Name: $performer/li/a/*[@class='Popover']/text()
+        URL: $performer//li/a/@href   

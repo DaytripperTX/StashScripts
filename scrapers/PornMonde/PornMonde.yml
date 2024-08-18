@@ -44,4 +44,8 @@ xPathScrapers:
       Title: //*[@class='VideoTitle']/text()
       Performers:
         Name: $performer/li/a/*[@class='Popover']/text()
-        URL: $performer//li/a/@href   
+        URL: $performer//li/a/@href
+      Image: //meta[@property="og:image"]/@content
+      Date: //*[@class='Date']/*[@class='Value']/text()
+      Tags:
+        Name: //*[@class='VideoCategories']/ul/li/a/*[@class='Popover']/text()

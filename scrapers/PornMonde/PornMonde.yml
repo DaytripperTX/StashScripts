@@ -93,3 +93,6 @@ xPathScrapers:
                 with: "https://www.pornhub.com"
       Image:
         selector: $searchItem//div[contains(@class, "phimage")]//img/@data-thumb_url
+
+debug:
+  printHTML: true

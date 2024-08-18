@@ -1,4 +1,5 @@
-name: PornMonde
+name: Porn Monde
+description: A scraper for PornMonde.com
 performerByURL:
   - action: scrapeXPath
     url: 

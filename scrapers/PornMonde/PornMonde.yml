@@ -21,7 +21,7 @@ sceneByFragment:
     filename:
       - regex: (.*[^a-zA-Z])(?:- PornMonde(?:.+))
         with: $1
-  scraper: sceneScraper
+  scraper: sceneSearch
 sceneByQueryFragment:
   action: scrapeXPath
   queryURL: https://pornmonde.com/search?q={filename}
@@ -29,7 +29,7 @@ sceneByQueryFragment:
     filename:
       - regex: (.*[^a-zA-Z])(?:- PornMonde(?:.+))
         with: $1
-  scraper: sceneScraper
+  scraper: sceneSearch
 
   
 xPathScrapers:
@@ -81,19 +81,16 @@ xPathScrapers:
 
   sceneSearch:
     common:
-      $searchItem: //ul[contains(@class, "search-video-thumbs") and not(@id="bottomVideos")]
-      $searchThumb: //ul[contains(@class, "search-video-thumbs") and not(@id="bottomVideos")]//div[contains(@class, "thumbnail-info-wrapper")]/span[@class="title"]/a
-
+      $searchItem: //*[@class="VideosList singleRow"]/*[@class="SingleVideoItemLink"]
     scene:
-      Title: $searchThumb/text()
+      Title: $searchItem/*/*[@class="Title"]/text()
       URL:
-        selector: $searchThumb/@href
+        selector: $searchItem/@href
         postProcess:
           - replace:
               - regex: ^
-                with: "https://www.pornhub.com"
-      Image:
-        selector: $searchItem//div[contains(@class, "phimage")]//img/@data-thumb_url
+                with: "https://pornmonde.com"
+
 
 debug:
   printHTML: true

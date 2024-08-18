@@ -49,6 +49,8 @@ xPathScrapers:
       Date: 
         Selector: //*[@class='Date']/*[@class='Value']/text()
         postProcess:
-          - parseDate: "02.01.2006"
+         - replace:
+            - regex: (\d{2})\.(\d{2})\.(\d{4})
+              with: $3-$2-$1
       Tags:
         Name: //*[@class='VideoCategories']/ul/li/a/*[@class='Popover']/text()

@@ -47,7 +47,7 @@ xPathScrapers:
         URL: $performer//li/a/@href
       Image: //meta[@property="og:image"]/@content
       Date: 
-        Selector: //*[@class='Date']/*[@class='Value']/text()
+        selector: //*[@class='Date']/*[@class='Value']/text()
         postProcess:
          - replace:
             - regex: (\d{2})\.(\d{2})\.(\d{4})

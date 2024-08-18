@@ -20,8 +20,8 @@ sceneByFragment:
     filename:
       - regex: (.*[^a-zA-Z])(?:PornMonde(?:.+))
         with: $1
-   scraper: sceneScraper
- sceneByQueryFragment:
+        scraper: sceneScraper
+sceneByQueryFragment:
    action: scrapeXPath
    queryURL: "{url}"
    scraper: sceneScraper

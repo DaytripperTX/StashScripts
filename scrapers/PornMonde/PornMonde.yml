@@ -90,7 +90,7 @@ xPathScrapers:
           - replace:
               - regex: ^
                 with: "https://pornmonde.com"
-      Image: $searchItem/*/*/*/img/@src
+      Image: $searchItem/*/*/*/img/@data-src
 
 
 debug:

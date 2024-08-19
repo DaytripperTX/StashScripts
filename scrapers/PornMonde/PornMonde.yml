@@ -19,7 +19,7 @@ sceneByFragment:
   queryURL: https://pornmonde.com/search?q={filename}
   queryURLReplace:
     filename:
-      - regex: ^([^-]*?)(?:\s*-\s*).*
+      - regex: ([^-]*?)(?:\s*-\s*)(?:.*)
         with: $1
   scraper: sceneSearch
 sceneByQueryFragment:

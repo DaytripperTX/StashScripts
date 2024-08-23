@@ -14,12 +14,12 @@ sceneByURL:
 xPathScrapers:          
   sceneScraper:
     common:
-      $performer: //*[@class='VideoPornstars']/*[@class='CircleImageList']
+      $performer: //*[@itemprop='author']/a
     scene:
-      Title: //*[@class='VideoTitle']/text()
+      Title: //*[@class='title-block']/*[@itemprop='name']/text()
       Performers:
-        Name: $performer/li/a/*[@class='Popover']/text()
-        URL: $performer//li/a/@href
+        Name: $performer/text()
+        URL: $performer/@href
       Image: //meta[@property="og:image"]/@content
       Date: 
         selector: //*[@class='Date']/*[@class='Value']/text()

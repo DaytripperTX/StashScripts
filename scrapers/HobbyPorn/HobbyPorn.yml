@@ -20,15 +20,10 @@ xPathScrapers:
       Performers:
         Name: $performer/text()
         URL: $performer/@href
-      Image: //meta[@property="og:image"]/@content
       Date: 
-        selector: //*[@class='Date']/*[@class='Value']/text()
-        postProcess:
-         - replace:
-            - regex: (\d{2})\.(\d{2})\.(\d{4})
-              with: $3-$2-$1
+        selector: //meta[@itemprop='uploadDate']/@content
       Tags:
-        Name: //*[@class='VideoCategories']/ul/li/a/*[@class='Popover']/text()
+        Name: //*[contains(text(),"Tags")]/../a/text()
 
 debug:
   printHTML: true
